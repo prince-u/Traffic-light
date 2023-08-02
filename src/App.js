@@ -1,19 +1,17 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TrafficLight from "./TrafficLight";
 
 function App() {
   const [lightTimer, setLightTimer] = useState(1);
   const [timeRemaining, setTimeRemaining] = useState(5);
-
+  function HandleLightSwitch() {
+    if (lightTimer === 3) setLightTimer(1);
+    else setLightTimer(lightTimer + 1);
+  }
   setTimeout(() => {
-    console.log("called");
     if (timeRemaining === 0) {
-      if (lightTimer === 3) {
-        setLightTimer(1);
-      } else {
-        setLightTimer(lightTimer + 1);
-      }
+      HandleLightSwitch();
       setTimeRemaining(5);
     } else {
       setTimeRemaining(timeRemaining - 1);
